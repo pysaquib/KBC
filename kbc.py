@@ -51,7 +51,7 @@ while(i<len(Question_List)):
         print("***SORRY, YOU CAN USE LIFELINE ONLY ONCE***")
         print()
         continue
-    if(answer.isalpha()):
+    if(answer.isdigit()!=True):
         print("You cannot enter alphabets or special characters. Only numbers are allowed\n")
         continue
     else:
@@ -69,12 +69,22 @@ while(i<len(Question_List)):
             o = lifeline(Answers_List[i])
             print(Question_List[i])
             print()
-            opt_list = [Answers_List[i],o]
+            opt_list = [Answers_List[i], o]
+            extra = opt_list[:]
             random.shuffle(opt_list)
+
+            flag = 0
+            for m in range(0, len(opt_list)):
+                if(opt_list[m]==extra[0]):
+                    flag = m
+
             for k in range(0, len(opt_list)):
                 print(str(k+1)+" : "+Options_List[i][opt_list[k]])
             answer = int(input("Enter your answer : "))
             print()
+            if((answer-1)!=flag):
+                print("WRONG ANSWER\nGAME OVER")
+                break
             i+=1
             continue
 
